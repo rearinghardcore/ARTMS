@@ -1,5 +1,7 @@
-This Project is a research-based development. 
+<h1>This Project is a research-based development. </h1>
 
+
+<h2><div style="text-align: justify">
 This conducted research study entitled “Artemis Portal: An Automated Real-Time
 Tardiness Monitoring System Using Laravel Framework for Streamlined Attendance” is a
 mandatory component for Grade 12 students under Electronic Information, Communication, and
@@ -12,3 +14,7 @@ This research aims to combat the said problem by developing a web application th
 create and organize a repository of tardiness records of students and monitor, allow, or decline
 their requests for late slip permits through an administrative dashboard that can be accessed by
 school moderators.
+</div>
+
+</h2>
+
