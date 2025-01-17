@@ -1,6 +1,6 @@
 <h1>This Project is a research-based development. </h1>
   
-  <div style="text-align: justify; font-size: 14px;">
+  <div align="justify" style="font-size: 14px;">
 This conducted research study entitled “Artemis Portal: An Automated Real-Time
 Tardiness Monitoring System Using Laravel Framework for Streamlined Attendance” is a
 mandatory component for Grade 12 students under Electronic Information, Communication, and
