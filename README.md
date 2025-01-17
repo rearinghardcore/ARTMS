@@ -1,4 +1,6 @@
-##This Project is a research-based development. This conducted research study entitled “Artemis Portal: An Automated Real-Time
+This Project is a research-based development. 
+
+This conducted research study entitled “Artemis Portal: An Automated Real-Time
 Tardiness Monitoring System Using Laravel Framework for Streamlined Attendance” is a
 mandatory component for Grade 12 students under Electronic Information, Communication, and
 Technology (EICT), Science, Technology, Engineering, and Mathematics (STEM) in their
