@@ -1,4 +1,4 @@
-<h1>This Project is a research-based development. </h1>
+<h1>The Artemis Portal is a research-based web application developed using Laravel. </h1>
   
   <div align="justify" style="font-size: 14px;">
 This conducted research study entitled “Artemis Portal: An Automated Real-Time
