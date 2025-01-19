@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'student_id',
         'email',
         'password',
     ];
@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function isAdmin()
+{
+    return $this->usertype == 'admin';
 }
+}
+
