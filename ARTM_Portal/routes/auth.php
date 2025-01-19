@@ -29,5 +29,12 @@ Route::middleware('auth')->group(function () {
         ->name('password.confirm');
 });
 
-Volt::route('register', 'pages.auth.register')
-    ->name('register')->middleware(CheckPermission::class);
+
+Route::middleware('admin')->group(function () {
+    Volt::route('register', 'pages.auth.register')
+    ->name('register');
+
+});
+
+
+
