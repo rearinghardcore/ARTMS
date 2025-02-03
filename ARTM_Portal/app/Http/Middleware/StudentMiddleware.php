@@ -21,6 +21,6 @@ class StudentMiddleware
             return $next($request);
         }
 
-        return redirect('admin/dashboard')->with('error', 'You do not have access to this page.');
+        return redirect('admin/dashboard');
     }
 }
