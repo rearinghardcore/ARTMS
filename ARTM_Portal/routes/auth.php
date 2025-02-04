@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('admin')->group(function () {
+Route::middleware('superadmin')->group(function () {
     Volt::route('register', 'pages.auth.register')
     ->name('register');
 

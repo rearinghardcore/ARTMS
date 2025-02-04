@@ -15,11 +15,12 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $guard = null)
     {
         if (Auth::check() && Auth::user()->usertype == 'admin' || Auth::user()->usertype == 'superadmin') {
             return $next($request);
+        } else {
+            return redirect('/dashboard');
         }
-        return redirect('dashboard');
     }
 }

@@ -38,6 +38,7 @@ new #[Layout('layouts.guest')] class extends Component
     }
 }; ?>
 
+@if (Auth::user() && Auth::user()->usertype === 'superadmin')
 <div>
     <form wire:submit="register">
 
@@ -93,3 +94,16 @@ new #[Layout('layouts.guest')] class extends Component
         </div>
     </form>
 </div>
+
+@elseif (Auth::user() && Auth::user()->usertype === 'admin')
+<div class="min-h-w-screen flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Unauthorized</h1>
+            <p class="mt-4 text-gray-600 dark:text-gray-400">You are not authorized to use this page.</p>
+          <br>
+            <a href="{{ url('/') }}" class="mt-4 inline-block px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                Go to Home
+            </a>
+        </div>
+    </div>
+@endif
