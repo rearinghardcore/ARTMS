@@ -17,8 +17,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->appendToGroup('admin', [AdminMiddleware::class]);
     })
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: '*');
+    })
+    ->withMiddleware(function (Middleware $middleware) {
         $middleware->appendToGroup('student', [StudentMiddleware::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+    
