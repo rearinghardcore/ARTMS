@@ -34,10 +34,18 @@ new class extends Component
                         <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                             {{ __('Admin Dashboard') }}
                         </x-nav-link>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('late-slip-requests')" :active="request()->routeIs('late-slip-requests')">
+                            {{ __('Late Slip Requests') }}
+                        </x-nav-link>
                         @elseif (Auth::user() && Auth::user()->usertype === 'superadmin')
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                             {{ __('Admin Dashboard') }}
+                        </x-nav-link>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('late-slip-requests')" :active="request()->routeIs('late-slip-requests')">
+                            {{ __('Late Slip Requests') }}
                         </x-nav-link>
                         <div class="inline-flex items-center px-1 pt-1">
                             <x-dropdown align="right" width="48">
@@ -60,10 +68,14 @@ new class extends Component
                    
                             </x-dropdown>
                         </div>
+
                     </div>
+
+                </div>
+
 <div>
-@endif
-</div>
+
+</div>                @endif
             </div>
 
             <!-- Settings Dropdown -->

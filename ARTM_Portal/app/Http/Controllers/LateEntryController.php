@@ -25,4 +25,10 @@ class LateEntryController extends Controller
 
         return redirect()->route('dashboard')->with('status', 'Late entry recorded successfully!');
     }
+
+    public function index()
+    {
+        $lateEntries = LateEntry::with('user')->get();
+        return view('late_slip_requests', compact('lateEntries'));
+    }
 }
