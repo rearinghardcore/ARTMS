@@ -19,8 +19,8 @@ class LateEntryController extends Controller
             'user_id' => Auth::id(),
             'date' => Carbon::now()->toDateString(),
             'time' => Carbon::now()->format('h:i:s'), // Original time
-            'daypart' => Carbon::now()->format('A'),
             'reason' => $request->reason,
+            'status' => 'Waiting', // Set default status to 'waiting'
         ]);
 
         return redirect()->route('dashboard')->with('status', 'Late entry recorded successfully!');

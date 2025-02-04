@@ -14,6 +14,7 @@ class LateEntry extends Model
         'date',
         'time',
         'reason',
+        'status', // Add status to fillable attributes
     ];
 
     /**

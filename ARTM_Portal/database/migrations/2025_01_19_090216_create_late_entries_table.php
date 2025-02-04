@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('date');
             $table->time('time');
-            $table->string('daypart');
             $table->string('reason')->nullable();
+            $table->string('status')->default('Waiting');
             $table->timestamps();
+            
         });
     }
 

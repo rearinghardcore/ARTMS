@@ -17,7 +17,7 @@ class AdminDashboard extends Controller
 
             if ($usertype == 'student') {
                 return redirect()->route('dashboard');
-            } elseif ($usertype == 'admin') {
+            } elseif ($usertype == 'admin' && $usertype == 'superadmin') {
                 return redirect()->route('admin.dashboard');
             }
         }

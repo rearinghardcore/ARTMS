@@ -29,6 +29,14 @@ class UserSeeder extends Seeder
             'usertype' => 'student',
         ]);
 
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@example.com',
+            'password' => Hash::make('password'),
+            'usertype' => 'superadmin',
+        ]);
+
+
         // Add more users as needed
     }
 }

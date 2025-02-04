@@ -21,7 +21,7 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::middleware(['auth', 'admin'])->group(function() {
+Route::middleware(['auth', 'admin', 'superadmin'])->group(function() {
     Route::get('admin/dashboard', [AdminDashboard::class, 'adminDashboard'])->name('admin');
     Route::get('admin/student/{id}/late-entries', [AdminDashboard::class, 'showStudentLateEntries'])->name('admin.student.late-entries');
     Route::get('admin/create', [AdminDashboard::class, 'createAdmin'])->name('admin.create');
