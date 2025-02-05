@@ -23,7 +23,7 @@
                         <a href="{{ route('late-entry.create') }}" class="px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                             Generate Slip
                         </a>
-                        <a href="{{ route('late-entry.create') }}" class="px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                        <a href="{{ route('generate-qr') }}" class="px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                             Generate QR Code
                         </a>
                         @if (Auth::user()->usertype == 'admin' || Auth::user()->usertype == 'superadmin')

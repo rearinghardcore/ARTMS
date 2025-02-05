@@ -59,4 +59,10 @@ class LateEntryController extends Controller
 
         return redirect()->route('late-slip-requests')->with('status', 'Late slip request rejected successfully!');
     }
+
+    public function generateQR()
+    {
+        $lateEntries = LateEntry::with('user')->get();
+        return view('GenerateQR', compact('lateEntries'));
+    }
 }
