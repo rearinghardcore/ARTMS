@@ -5,16 +5,6 @@
         </h2>
     </x-slot>
 
-    <style>
-        select option {
-            color: black;
-            background: white;
-        }
-        .dark select option {
-            color: lightblue;
-        }
-    </style>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -32,7 +22,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="button" class="px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                        <button type="submit" class="px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                             Generate QR Code
                         </button>
                     </form>

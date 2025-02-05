@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\LateEntry;
 use App\Models\User;
 use Carbon\Carbon;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 
 class LateEntryController extends Controller
 {
@@ -60,9 +62,25 @@ class LateEntryController extends Controller
         return redirect()->route('late-slip-requests')->with('status', 'Late slip request rejected successfully!');
     }
 
-    public function generateQR()
+    public function generateQR(Request $request)
     {
-        $lateEntries = LateEntry::with('user')->get();
-        return view('GenerateQR', compact('lateEntries'));
+        $lateEntry = LateEntry::findOrFail($request->entry_slip);
+        $url = route('late-entry.valid', ['id' => $lateEntry->id]);
+
+        $options = new QROptions([
+            'version'    => 5,
+            'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+            'eccLevel'   => QRCode::ECC_L,
+        ]);
+
+        $qrcode = (new QRCode($options))->render($url);
+
+        return view('show_qr', compact('qrcode'));
+    }
+
+    public function showValidEntry($id)
+    {
+        $lateEntry = LateEntry::findOrFail($id);
+        return view('late_entry_valid', compact('lateEntry'));
     }
 }
