@@ -20,7 +20,8 @@ class LateEntryController extends Controller
             'date' => Carbon::now()->toDateString(),
             'time' => Carbon::now()->format('h:i:s'), // Original time
             'reason' => $request->reason,
-            'status' => 'Waiting', // Set default status to 'waiting'
+            'status' => 'Pending', // Set default status to 'waiting'
+            'isApproved' => 0, // Set default isApproved to 0
         ]);
 
         return redirect()->route('dashboard')->with('status', 'Late entry recorded successfully!');
@@ -28,7 +29,14 @@ class LateEntryController extends Controller
 
     public function index()
     {
-        $lateEntries = LateEntry::with('user')->get();
+        $lateEntries = LateEntry::with('user')->where('isApproved', 0)->get();
         return view('late_slip_requests', compact('lateEntries'));
+        foreach ($lateEntries as $lateEntry) {
+            if ($lateEntry->isApproved == 1) {
+                $lateEntry->status = 'Approved';
+            }
+        }
+
     }
+
 }

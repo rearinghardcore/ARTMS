@@ -17,7 +17,8 @@ return new class extends Migration
             $table->date('date');
             $table->time('time');
             $table->string('reason')->nullable();
-            $table->string('status')->default('Waiting');
+            $table->string('status')->default('Pending');
+            $table->boolean('isApproved')->default(0);
             $table->timestamps();
             
         });

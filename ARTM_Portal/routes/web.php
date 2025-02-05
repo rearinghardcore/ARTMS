@@ -17,6 +17,8 @@ Route::get('late-entry/create', function () {
 
 Route::post('late-entry', [LateEntryController::class, 'store'])->name('late-entry.store');
 
+
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
