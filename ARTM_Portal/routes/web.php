@@ -31,6 +31,9 @@ Route::middleware(['auth', 'admin', 'superadmin'])->group(function() {
     Route::get('admin/create-student', [AdminDashboard::class, 'createStudent'])->name('admin.create-student');
     Route::post('admin/store-student', [AdminDashboard::class, 'storeStudent'])->name('admin.store-student');
     Route::get('/late-slip-requests', [LateEntryController::class, 'index'])->name('late-slip-requests');
+    Route::get('/late-slip-requests', [LateEntryController::class, 'index'])->name('late-slip-requests');
+    Route::post('/late-slip-requests/approve/{id}', [LateEntryController::class, 'approve'])->name('late-slip-requests.approve');
+    Route::post('/late-slip-requests/reject/{id}', [LateEntryController::class, 'reject'])->name('late-slip-requests.reject');
 });
 
 require __DIR__.'/auth.php';

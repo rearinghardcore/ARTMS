@@ -31,12 +31,25 @@ class LateEntryController extends Controller
     {
         $lateEntries = LateEntry::with('user')->where('isApproved', 0)->get();
         return view('late_slip_requests', compact('lateEntries'));
-        foreach ($lateEntries as $lateEntry) {
-            if ($lateEntry->isApproved == 1) {
-                $lateEntry->status = 'Approved';
-            }
-        }
-
     }
 
+    public function approve($id)
+    {
+        $lateEntry = LateEntry::findOrFail($id);
+        $lateEntry->isApproved = 1;
+        $lateEntry->status = 'Approved';
+        $lateEntry->save();
+
+        return redirect()->route('late-slip-requests')->with('status', 'Late slip request approved successfully!');
+    }
+
+    public function reject($id)
+    {
+        $lateEntry = LateEntry::findOrFail($id);
+        $lateEntry->isApproved = 3;
+        $lateEntry->status = 'Rejected';
+        $lateEntry->save();
+
+        return redirect()->route('late-slip-requests')->with('status', 'Late slip request rejected successfully!');
+    }
 }

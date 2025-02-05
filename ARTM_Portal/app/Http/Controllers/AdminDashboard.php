@@ -34,7 +34,7 @@ class AdminDashboard extends Controller
     public function showStudentLateEntries($id)
     {
         $student = User::findOrFail($id);
-        $lateEntries = LateEntry::where('user_id', $id)->get();
+        $lateEntries = LateEntry::where('user_id', $id)->where('isApproved', 1)->get();
         return view('admin.student_late_entries', compact('student', 'lateEntries'));
     }
 
