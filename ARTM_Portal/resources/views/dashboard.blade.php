@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -7,20 +8,34 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 overflow-auto shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if (Auth::user()->notification && Auth::user()->notification_timestamp && Auth::user()->notification_timestamp->diffInHours(now()) < 1)
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                            <strong class="font-bold">Notification:</strong>
+                            <span class="block sm:inline">{{ Auth::user()->notification }}</span>
+                        </div>
+                        <br>
+                    @endif
                     {{ __("What would you like to do?") }}
-                    <br>
-                    <br>
-                    <a href="{{ route('late-entry.create') }}" class="mt-4 px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                        Generate Slip
-                    </a>
-                    <a class="mt-4 px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                        Generate QR Code
-                    </a>
+
+                    <div class="space-y-4 mt-4">
+                        <a href="{{ route('late-entry.create') }}" class="px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                            Generate Slip
+                        </a>
+                        <a href="{{ route('late-entry.create') }}" class="px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                            Generate QR Code
+                        </a>
+                        @if (Auth::user()->usertype == 'admin' || Auth::user()->usertype == 'superadmin')
+                            <a href="{{ route('late-slip-requests') }}" class="px-4 py-2 bg-green-800 text-white font-semibold rounded-lg shadow-md hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                                Late Slip Requests Queue
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-6">
+
+            <div class="container-fluid bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg mt-6">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h3 class="text-lg font-semibold mb-4">Late Entries</h3>
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -49,22 +64,22 @@
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                             @foreach ($lateEntries as $entry)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
                                         {{ $entry->user->id }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
                                         {{ $entry->user->email }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
                                         {{ $entry->date }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
                                         {{ $entry->time }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
                                         {{ $entry->reason }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
                                         {{ $entry->status }}
                                     </td>
                                 </tr>

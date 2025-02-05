@@ -14,7 +14,8 @@ new class extends Component
 
         $this->redirect('/', navigate: true);
     }
-}; ?>
+};
+?>
 
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
@@ -29,53 +30,39 @@ new class extends Component
                 </div>
 
                 <!-- Navigation Links -->
-                @if (Auth::user() && Auth::user()->usertype === 'admin')
+                @if (Auth::user() && in_array(Auth::user()->usertype, ['admin', 'superadmin']))
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                             {{ __('Admin Dashboard') }}
                         </x-nav-link>
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('late-slip-requests')" :active="request()->routeIs('late-slip-requests')">
                             {{ __('Late Slip Requests') }}
                         </x-nav-link>
-                        @elseif (Auth::user() && Auth::user()->usertype === 'superadmin')
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
-                            {{ __('Admin Dashboard') }}
-                        </x-nav-link>
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('late-slip-requests')" :active="request()->routeIs('late-slip-requests')">
-                            {{ __('Late Slip Requests') }}
-                        </x-nav-link>
-                        <div class="inline-flex items-center px-1 pt-1">
-                            <x-dropdown align="right" width="48">
-                                <x-slot name="trigger">
-                                    <button class="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 focus:outline-none focus:text-gray-700 dark:focus:text-gray-300 focus:border-gray-300 dark:focus:border-gray-700 transition duration-150 ease-in-out">
-                                        <div>{{ __('Manage Accounts') }}</div>
-                                        <div class="ml-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                </x-slot>
 
-                                <x-slot name="content">
-                                    <x-dropdown-link :href="route('register')">
-                                        {{ __('Create Student Account') }}
-                                    </x-dropdown-link>
-                                </x-slot>
-                   
-                            </x-dropdown>
-                        </div>
+                        @if (Auth::user()->usertype === 'superadmin')
+                            <div class="inline-flex items-center px-1 pt-1">
+                                <x-dropdown align="right" width="48">
+                                    <x-slot name="trigger">
+                                        <button class="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 focus:outline-none focus:text-gray-700 dark:focus:text-gray-300 focus:border-gray-300 dark:focus:border-gray-700 transition duration-150 ease-in-out">
+                                            <div>{{ __('Manage Accounts') }}</div>
+                                            <div class="ml-1">
+                                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </button>
+                                    </x-slot>
 
+                                    <x-slot name="content">
+                                        <x-dropdown-link :href="route('register')">
+                                            {{ __('Create Student Account') }}
+                                        </x-dropdown-link>
+                                    </x-slot>
+                                </x-dropdown>
+                            </div>
+                        @endif
                     </div>
-
-                </div>
-
-<div>
-
-</div>                @endif
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
@@ -84,7 +71,6 @@ new class extends Component
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                             <div x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
-
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -122,7 +108,7 @@ new class extends Component
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        @if (Auth::user() && Auth::user()->usertype === 'admin' || Auth::user() && Auth::user()->usertype === 'superadmin')
+        @if (Auth::user() && in_array(Auth::user()->usertype, ['admin', 'superadmin']))
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                     {{ __('Admin Dashboard') }}
@@ -130,9 +116,11 @@ new class extends Component
                 <x-responsive-nav-link :href="route('admin.create-student')" :active="request()->routeIs('admin.create-student')">
                     {{ __('Create Student Account') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.create')" :active="request()->routeIs('admin.create')">
-                    {{ __('Create Admin Account') }}
-                </x-responsive-nav-link>
+                @if (Auth::user()->usertype === 'superadmin')
+                    <x-responsive-nav-link :href="route('admin.create')" :active="request()->routeIs('admin.create')">
+                        {{ __('Create Admin Account') }}
+                    </x-responsive-nav-link>
+                @endif
             </div>
         @endif
 

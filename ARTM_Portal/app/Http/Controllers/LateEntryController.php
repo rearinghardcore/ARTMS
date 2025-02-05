@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\LateEntry;
+use App\Models\User;
 use Carbon\Carbon;
 
 class LateEntryController extends Controller
@@ -39,6 +40,12 @@ class LateEntryController extends Controller
         $lateEntry->isApproved = 1;
         $lateEntry->status = 'Approved';
         $lateEntry->save();
+
+        // Set notification for the user
+        $user = $lateEntry->user;
+        $user->notification = 'Your late slip request has been approved.';
+        $user->notification_timestamp = Carbon::now();
+        $user->save();
 
         return redirect()->route('late-slip-requests')->with('status', 'Late slip request approved successfully!');
     }
