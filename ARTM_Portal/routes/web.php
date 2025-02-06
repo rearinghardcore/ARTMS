@@ -16,9 +16,10 @@ Route::get('late-entry/create', function () {
 })->middleware(['auth', 'student'])->name('late-entry.create');
 
 Route::get('/generate-qr', function () {
-    $lateEntries = \App\Models\LateEntry::with('user')->get();
+    $lateEntries = \App\Models\LateEntry::with('user')->where('user_id', Auth::id())->get();
     return view('GenerateQR', compact('lateEntries'));
 })->name('generate-qr-form');
+
 
 Route::post('/generate-qr', [LateEntryController::class, 'generateQR'])->name('generate-qr');
 Route::post('late-entry', [LateEntryController::class, 'store'])->name('late-entry.store');
