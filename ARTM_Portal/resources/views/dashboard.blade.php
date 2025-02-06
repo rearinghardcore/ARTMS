@@ -30,6 +30,10 @@
                             <a href="{{ route('late-slip-requests') }}" class="px-4 py-2 bg-green-800 text-white font-semibold rounded-lg shadow-md hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
                                 Late Slip Requests Queue
                             </a>
+                            <form action="{{ route('student.search') }}" method="GET" class="mt-4">
+                                <input type="text" name="query" placeholder="Search students..." class="px-4 py-2 border rounded">
+                                <button type="submit" class="px-4 py-2 bg-blue-800 text-white rounded">Search</button>
+                            </form>
                         @endif
                     </div>
                 </div>
