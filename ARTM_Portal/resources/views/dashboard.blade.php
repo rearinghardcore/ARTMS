@@ -1,7 +1,7 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
@@ -38,7 +38,7 @@
             <div class="container-fluid bg-white dark:bg-gray-800 shadow-sm sm:rounded-lg mt-6">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h3 class="text-lg font-semibold mb-4">Late Entries</h3>
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <table class="min-w-auto divide-y divide-gray-200 dark:divide-gray-700">
                         <thead>
                             <tr>
                                 <th class="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">

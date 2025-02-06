@@ -72,10 +72,9 @@ class LateEntryController extends Controller
             'outputType' => QRCode::OUTPUT_IMAGE_PNG,
             'eccLevel'   => QRCode::ECC_L,
         ]);
-
         $qrcode = (new QRCode($options))->render($url);
 
-        return view('show_qr', compact('qrcode'));
+        return view('show_qr', compact('qrcode', 'url'));
     }
 
     public function showValidEntry($id)

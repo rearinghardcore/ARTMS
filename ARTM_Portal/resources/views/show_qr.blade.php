@@ -13,8 +13,12 @@
                     <div class="mt-6">
                         <img class="align-middle mx-auto" src="{{ $qrcode }}" alt="QR Code">
                     </div>
+                    <br>
                     <a href="{{ route('generate-qr-form') }}" class="mt-4 px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                         Generate Another QR Code
+                    </a>
+                    <a href="{{ $url }}" class="mt-4 px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                        Go to Link
                     </a>
                 </div>
             </div>
