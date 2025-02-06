@@ -12,6 +12,10 @@ class AdminDashboard extends Controller
 {
     public function index()
     {
+        /* TO BE IMPLEMENTED
+        $userList = user::orderBy('name', DESC);
+        if(request()->has('search')) */
+
         if (Auth::check()) {
             $usertype = Auth::user()->usertype;
 
