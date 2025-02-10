@@ -25,6 +25,7 @@ class LateEntrySeeder extends Seeder
                 'date' => Carbon::now()->toDateString(),
                 'time' => Carbon::now()->toTimeString(),
                 'reason' => 'Test late entry',
+                'status' => 'waiting',
             ]);
         }
     }

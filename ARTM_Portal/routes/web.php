@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LateEntryController;
 use App\Http\Controllers\StudentSearchController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::view('/', 'welcome');
 
@@ -17,9 +18,8 @@ Route::get('late-entry/create', function () {
 })->middleware(['auth', 'student'])->name('late-entry.create');
 
 Route::get('/generate-qr', function () {
-    $lateEntries = \App\Models\LateEntry::with('user')->where('user_id', Auth::id())->get();
-    return view('GenerateQR', compact('lateEntries'));
-})->name('generate-qr-form');
+    $lateEntries = \App\Models\LateEntry::with('user')->where('isApproved', 1)->where('user_id', Auth::id())->get();
+    return view('GenerateQR', compact('lateEntries'));})->name('generate-qr-form');
 
 
 Route::post('late-entry', [LateEntryController::class, 'store'])->name('late-entry.store');
