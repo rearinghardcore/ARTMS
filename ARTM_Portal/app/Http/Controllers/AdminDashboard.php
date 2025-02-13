@@ -40,10 +40,10 @@ class AdminDashboard extends Controller
         return view('admin.admin_dashboard', compact('students'));
     }
 
-    public function showStudentLateEntries($student_id)
+    public function showStudentLateEntries($id)
     {
-        $student = User::findOrFail($student_id);
-        $lateEntries = LateEntry::where('student_id', $student_id)->where('isApproved', 1)->get();
+        $student = User::findOrFail($id);
+        $lateEntries = LateEntry::where('user_id', $id)->where('isApproved', 1)->get();
         return view('admin.student_late_entries', compact('student', 'lateEntries'));
     }
 

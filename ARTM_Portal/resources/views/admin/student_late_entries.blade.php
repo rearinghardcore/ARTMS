@@ -36,7 +36,7 @@
                             @foreach ($lateEntries as $entry)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 light:text-gray-100">
-                                        {{ $entry->user->id }}
+                                        {{ $entry->user->student_id }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 light:text-gray-100">
                                         {{ $entry->user->email }}
