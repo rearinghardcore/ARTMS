@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\LateEntry;
-use App\Models\User;
 use Carbon\Carbon;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
@@ -22,7 +21,7 @@ class LateEntryController extends Controller
             'user_id' => Auth::id(),
             'student_id' => Auth::user()->student_id,
             'date' => Carbon::now()->toDateString(),
-            'time' => Carbon::now()->format('h:i:s'), // Original time
+            'time' => Carbon::now()->format('H:i:s'), // Original time
             'reason' => $request->reason,
             'status' => 'Pending', // Set default status to 'waiting'
             'isApproved' => 0, // Set default isApproved to 0
@@ -44,6 +43,12 @@ class LateEntryController extends Controller
         $lateEntry->status = 'Approved';
         $lateEntry->save();
 
+        // Set notification for the user
+        $user = $lateEntry->user;
+        $user->notification = 'Your late slip request has been approved.';
+        $user->notification_timestamp = Carbon::now();
+        $user->save();
+
         return redirect()->route('late-slip-requests')->with('status', 'Late slip request approved successfully!');
     }
 
@@ -53,6 +58,12 @@ class LateEntryController extends Controller
         $lateEntry->isApproved = 3;
         $lateEntry->status = 'Rejected';
         $lateEntry->save();
+
+        // Set notification for the user
+        $user = $lateEntry->user;
+        $user->notification = 'Your late slip request has been rejected.';
+        $user->notification_timestamp = Carbon::now();
+        $user->save();
 
         return redirect()->route('late-slip-requests')->with('status', 'Late slip request rejected successfully!');
     }
@@ -81,10 +92,10 @@ class LateEntryController extends Controller
     public function QRSelection()
     {
         $lateEntries = LateEntry::where('user_id', Auth::id())
-        ->where('isApproved', 1)
-        ->orderBy('date', 'desc')
-        ->orderBy('time', 'desc')
-        ->get();
+            ->where('isApproved', 1)
+            ->orderBy('date', 'desc')
+            ->orderBy('time', 'desc')
+            ->get();
         return view('GenerateQR', compact('lateEntries'));
     }
 }

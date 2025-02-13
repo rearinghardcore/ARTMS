@@ -63,10 +63,6 @@
             font-size: 14px;
         }
 
-        tr:nth-child(even) {
-            background-color: #edf2f7; /* Light gray row for even rows */
-        }
-
         /* Custom Input Field Styling */
         .search-input {
             background-color: #f7fafc;

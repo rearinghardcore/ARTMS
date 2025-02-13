@@ -11,8 +11,7 @@ use Carbon\Carbon;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +20,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'student_id',
         'email',
         'password',
         'notification',
@@ -39,18 +37,14 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-            'notification_timestamp' => 'datetime',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'notification_timestamp' => 'datetime', // Cast to Carbon instance
+    ];
     
     public function isAdmin()
     {
