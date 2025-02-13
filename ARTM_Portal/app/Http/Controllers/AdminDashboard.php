@@ -95,6 +95,14 @@ class AdminDashboard extends Controller
 
     public function monitor()
     {
-        return view('linechart');
+        $data = LateEntry::selectRaw('DATE_FORMAT(date, "%Y-%m") as month, COUNT(*) as count')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get()
+            ->map(function ($item) {
+                return [$item->month, (int) $item->count];
+            });
+
+        return view('linechart', compact('data'));
     }
 }

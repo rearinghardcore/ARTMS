@@ -36,7 +36,7 @@ Route::middleware(['auth', 'student'])->group(function() {
 Route::middleware(['auth', 'admin', 'superadmin'])->group(function() {
     Route::get('admin/dashboard', [AdminDashboard::class, 'adminDashboard'])->name('admin');
     Route::get('student-search', [StudentSearchController::class, 'index'])->name('student.search');
-    Route::get('tardiness', [AdminDashboard::class, 'monitor'])->name('tardiness.monitor');
+    Route::get('admin/monitor', [AdminDashboard::class, 'monitor'])->name('admin.monitor');
     Route::get('student-search/results', [StudentSearchController::class, 'search'])->name('student.search.results');
     Route::get('admin/student/{id}/late-entries', [AdminDashboard::class, 'showStudentLateEntries'])->name('admin.student.late-entries');
     Route::get('admin/create', [AdminDashboard::class, 'createAdmin'])->name('admin.create');

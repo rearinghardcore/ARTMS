@@ -36,6 +36,9 @@ new class extends Component
                         <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                             {{ __('Admin Dashboard') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('admin.monitor')" :active="request()->routeIs('admin.monitor')">
+                            {{ __('Tardiness Monitor') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('student.search')" :active="request()->routeIs('student.search')">
                             {{ __('Search Student') }}
                         </x-nav-link>
