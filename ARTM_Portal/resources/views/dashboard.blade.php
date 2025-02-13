@@ -11,7 +11,7 @@
             <div class="bg-white light:bg-gray-800 overflow-auto shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 light:text-gray-100">
                     @if (Auth::user()->notification && Auth::user()->notification_timestamp && Auth::user()->notification_timestamp->diffInHours(now()) < 1)
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        <div class="bg-green-100 border-green border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                             <strong class="font-bold">Notification:</strong>
                             <span class="block sm:inline">{{ Auth::user()->notification }}</span>
                         </div>
@@ -69,7 +69,7 @@
                             @foreach ($lateEntries as $entry)
                                 <tr>
                                     <td class="px-6 py-4 text-sm text-gray-900 light:text-gray-100">
-                                        {{ $entry->user->id }}
+                                        {{ $entry->user->student_id }}
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-900 light:text-gray-100">
                                         {{ $entry->user->email }}

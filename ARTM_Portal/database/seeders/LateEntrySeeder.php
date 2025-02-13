@@ -22,6 +22,7 @@ class LateEntrySeeder extends Seeder
         if ($user) {
             LateEntry::create([
                 'user_id' => $user->id,
+                'student_id' => $user->student_id,
                 'date' => Carbon::now()->toDateString(),
                 'time' => Carbon::now()->toTimeString(),
                 'reason' => 'Test late entry',

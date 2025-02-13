@@ -56,5 +56,13 @@ class User extends Authenticatable
     {
         return $this->usertype == 'superadmin';
     }
+
+    /**
+     * Get the late entries for the user.
+     */
+    public function lateEntries()
+    {
+        return $this->hasMany(LateEntry::class);
+    }
 }
 

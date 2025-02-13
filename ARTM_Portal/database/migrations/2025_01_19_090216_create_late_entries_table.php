@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('late_entries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('student_id')->constrained()->onDelete('cascade');
             $table->date('date');
             $table->time('time');
             $table->string('reason')->nullable();

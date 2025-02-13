@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Admin User',
+            'student_id' => 1,
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),
             'usertype' => 'admin',
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Student User',
+            'student_id' => 12345678,
             'email' => 'student@example.com',
             'password' => Hash::make('password'),
             'usertype' => 'student',
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Super Admin',
+            'student_id' => 0,
             'email' => 'superadmin@example.com',
             'password' => Hash::make('password'),
             'usertype' => 'superadmin',

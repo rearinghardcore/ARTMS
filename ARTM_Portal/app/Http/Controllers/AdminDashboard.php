@@ -31,14 +31,19 @@ class AdminDashboard extends Controller
 
     public function adminDashboard()
     {
-        $students = User::where('usertype', 'student')->get();
+        $students = User::where('usertype', 'student')
+            ->withCount(['lateEntries' => function ($query) {
+                $query->where('isApproved', 1);
+            }])
+            ->get();
+
         return view('admin.admin_dashboard', compact('students'));
     }
 
-    public function showStudentLateEntries($id)
+    public function showStudentLateEntries($student_id)
     {
-        $student = User::findOrFail($id);
-        $lateEntries = LateEntry::where('user_id', $id)->where('isApproved', 1)->get();
+        $student = User::findOrFail($student_id);
+        $lateEntries = LateEntry::where('student_id', $student_id)->where('isApproved', 1)->get();
         return view('admin.student_late_entries', compact('student', 'lateEntries'));
     }
 
@@ -58,11 +63,11 @@ class AdminDashboard extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => bcrypt($request->password),
             'usertype' => 'admin',
         ]);
 
-        return redirect()->route('admin.dashboard')->with('status', 'Admin created successfully!');
+        return redirect()->route('admin.dashboard')->with('success', 'Admin created successfully.');
     }
 
     public function createStudent()
@@ -86,5 +91,10 @@ class AdminDashboard extends Controller
         ]);
 
         return redirect()->route('admin.dashboard')->with('status', 'Student created successfully!');
+    }
+
+    public function monitor()
+    {
+        return view('linechart');
     }
 }

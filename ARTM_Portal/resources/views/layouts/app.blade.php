@@ -18,6 +18,7 @@
         <div class="min-h-screen bg-gray-100 light:bg-gray-900">
             <livewire:layout.navigation2 />
 
+
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white light:bg-gray-800 shadow">

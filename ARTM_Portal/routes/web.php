@@ -18,7 +18,7 @@ Route::get('late-entry/create', function () {
 })->middleware(['auth', 'student'])->name('late-entry.create');
 
 Route::get('/generate-qr', function () {
-    $lateEntries = \App\Models\LateEntry::with('user')->where('isApproved', 1)->where('user_id', Auth::id())->get();
+    $lateEntries = \App\Models\LateEntry::with('user')->where('isApproved', 1)->where('id', Auth::id())->get();
     return view('GenerateQR', compact('lateEntries'));})->name('generate-qr-form');
 
 
@@ -35,6 +35,9 @@ Route::middleware(['auth', 'student'])->group(function() {
 
 Route::middleware(['auth', 'admin', 'superadmin'])->group(function() {
     Route::get('admin/dashboard', [AdminDashboard::class, 'adminDashboard'])->name('admin');
+    Route::get('student-search', [StudentSearchController::class, 'index'])->name('student.search');
+    Route::get('tardiness', [AdminDashboard::class, 'monitor'])->name('tardiness.monitor');
+    Route::get('student-search/results', [StudentSearchController::class, 'search'])->name('student.search.results');
     Route::get('admin/student/{id}/late-entries', [AdminDashboard::class, 'showStudentLateEntries'])->name('admin.student.late-entries');
     Route::get('admin/create', [AdminDashboard::class, 'createAdmin'])->name('admin.create');
     Route::post('admin/store', [AdminDashboard::class, 'storeAdmin'])->name('admin.store');
@@ -46,8 +49,5 @@ Route::middleware(['auth', 'admin', 'superadmin'])->group(function() {
     Route::post('/late-slip-requests/reject/{id}', [LateEntryController::class, 'reject'])->name('late-slip-requests.reject');
 });
 
-Route::get('student-search', [StudentSearchController::class, 'search'])
-    ->middleware(['auth', 'admin', 'superadmin'])
-    ->name('student.search');
 
 require __DIR__.'/auth.php';

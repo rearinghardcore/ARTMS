@@ -14,7 +14,7 @@ new #[Layout('layouts.guest')] class extends Component
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
-    public string $id = '';
+    public string $student_id = '';
 
     /**
      * Handle an incoming registration request.
@@ -25,7 +25,7 @@ new #[Layout('layouts.guest')] class extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-            'id' => ['required', 'string', 'max:255', 'unique:'.User::class, 'regex:/^[0-9]+$/', 'digits:8'],
+            'student_id' => ['required', 'string', 'max:255', 'unique:'.User::class, 'regex:/^[0-9]+$/', 'digits:8'],
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
@@ -50,8 +50,8 @@ new #[Layout('layouts.guest')] class extends Component
 
  <!-- Student's ID -->
         <div class="mt-4">
-            <x-input-label for="id" :value="__('Student ID')" />
-            <x-text-input wire:model="id" id="id" class="block mt-1 w-full" required autocomplete="off"/>
+            <x-input-label for="student_id" :value="__('Student ID')" />
+            <x-text-input wire:model="student_id" id="student_id" class="block mt-1 w-full" required autocomplete="id"/>
             <x-input-error :messages="$errors->get('')" class="mt-2" />
         </div>
 

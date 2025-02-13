@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $lateEntries = LateEntry::where('user_id', $user->id)->get();
+        $lateEntries = LateEntry::where('student_id', $user->student_id)->get();
 
         return view('dashboard', compact('lateEntries'));
     }

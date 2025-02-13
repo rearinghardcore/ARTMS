@@ -17,6 +17,7 @@ new class extends Component
 };
 ?>
 
+
 <nav x-data="{ open: false }" class="bg-white light:bg-gray-800 border-b border-gray-100 light:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,6 +35,9 @@ new class extends Component
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                             {{ __('Admin Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('student.search')" :active="request()->routeIs('student.search')">
+                            {{ __('Search Student') }}
                         </x-nav-link>
                         <x-nav-link :href="route('late-slip-requests')" :active="request()->routeIs('late-slip-requests')">
                             {{ __('Late Slip Requests') }}
@@ -113,14 +117,7 @@ new class extends Component
                 <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                     {{ __('Admin Dashboard') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.create-student')" :active="request()->routeIs('admin.create-student')">
-                    {{ __('Create Student Account') }}
-                </x-responsive-nav-link>
-                @if (Auth::user()->usertype === 'superadmin')
-                    <x-responsive-nav-link :href="route('admin.create')" :active="request()->routeIs('admin.create')">
-                        {{ __('Create Admin Account') }}
-                    </x-responsive-nav-link>
-                @endif
+               
             </div>
         @endif
 
@@ -132,10 +129,17 @@ new class extends Component
             </div>
 
             <div class="mt-3 space-y-1">
+                 <a href="{{ route('profile') }}" class="block w-full text-left px-4 py-2 text-sm text-gray-700 light:text-gray-300 hover:bg-gray-100 light:hover:bg-gray-900 hover:text-gray-900 light:hover:text-gray-200 focus:outline-none focus:bg-gray-100 light:focus:bg-gray-900 focus:text-gray-900 light:focus:text-gray-200 transition duration-150 ease-in-out">
+                    {{ __('View Profile') }}
+                </a>
+                <a href="{{ route('late-slip-requests') }}" class="block w-full text-left px-4 py-2 text-sm text-gray-700 light:text-gray-300 hover:bg-gray-100 light:hover:bg-gray-900 hover:text-gray-900 light:hover:text-gray-200 focus:outline-none focus:bg-gray-100 light:focus:bg-gray-900 focus:text-gray-900 light:focus:text-gray-200 transition duration-150 ease-in-out">
+                    {{ __('Late Slip Requests') }}
+                </a>
                 <!-- Authentication -->
-                <button wire:click="logout" class="w-full text-start">
+                <button wire:click="logout" class="block w-full text-left px-4 py-2 text-sm text-gray-700 light:text-gray-300 hover:bg-gray-100 light:hover:bg-gray-900 hover:text-gray-900 light:hover:text-gray-200 focus:outline-none focus:bg-gray-100 light:focus:bg-gray-900 focus:text-gray-900 light:focus:text-gray-200 transition duration-150 ease-in-out">
                     {{ __('Log Out') }}
                 </button>
+              
             </div>
         </div>
     </div>

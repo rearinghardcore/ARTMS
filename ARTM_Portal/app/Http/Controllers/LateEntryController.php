@@ -20,6 +20,7 @@ class LateEntryController extends Controller
 
         LateEntry::create([
             'user_id' => Auth::id(),
+            'student_id' => Auth::user()->student_id,
             'date' => Carbon::now()->toDateString(),
             'time' => Carbon::now()->format('h:i:s'), // Original time
             'reason' => $request->reason,

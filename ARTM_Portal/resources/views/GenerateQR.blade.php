@@ -14,7 +14,7 @@
                         <div class="mb-4">
                             <label for="entry_slip" class="block text-sm font-medium text-gray-700 light:text-gray-300">Select Entry Slip to Generate</label>
                             <br>
-                            <select id="entry_slip" name="entry_slip" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500">
+                            <select id="entry_slip" name="entry_slip" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-blue-500 light:focus:border-blue-500">
                                 @foreach ($lateEntries as $entry)
                                     <option value="{{ $entry->id }}">
                                         {{ $entry->user->name }} - {{ $entry->date }} - {{ $entry->time }} - {{ $entry->status }}

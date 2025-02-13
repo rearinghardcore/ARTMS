@@ -11,6 +11,7 @@ class LateEntry extends Model
 
     protected $fillable = [
         'user_id',
+        'student_id',
         'date',
         'time',
         'reason',
