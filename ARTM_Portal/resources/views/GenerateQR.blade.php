@@ -7,14 +7,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white light:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 light:text-gray-100">
+            <div class="form-container">
+                <div class="form-content">
                     <form action="{{ route('generate-qr') }}" method="POST">
                         @csrf
-                        <div class="mb-4">
-                            <label for="entry_slip" class="block text-sm font-medium text-gray-700 light:text-gray-300">Select Entry Slip to Generate</label>
+                        <div class="form-group">
+                            <label for="entry_slip" class="form-label">Select Entry Slip to Generate</label>
                             <br>
-                            <select id="entry_slip" name="entry_slip" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-blue-500 light:focus:border-blue-500">
+                            <select id="entry_slip" name="entry_slip" class="form-input">
                                 @foreach ($lateEntries as $entry)
                                     <option value="{{ $entry->id }}">
                                         {{ $entry->user->name }} - {{ $entry->date }} - {{ $entry->time }} - {{ $entry->status }}
@@ -22,7 +22,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="px-4 py-2 bg-blue-800 text-black font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                        <button type="submit" class="submit-btn">
                             Generate QR Code
                         </button>
                     </form>
@@ -30,4 +30,92 @@
             </div>
         </div>
     </div>
+
+    <style>
+        /* Main Container */
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        .form-content {
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-top: 1.5rem;
+        }
+
+        /* Form Label */
+        .form-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Select Input */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background-color: #f9fafb;
+            color: #333;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #1d4ed8;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .submit-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1rem;
+            }
+
+            .submit-btn {
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
 </x-app-layout>

@@ -35,10 +35,10 @@ class StudentSearchController extends Controller
         foreach ($students as $student) {
             $table_data .= '
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">'.$student->student_id.'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">'.$student->name.'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">'.$student->email.'</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 white:text-gray-100">'.$student->student_id.'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 white:text-gray-100">'.$student->name.'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 white:text-gray-100">'.$student->email.'</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 white:text-gray-100">
                         <a href="'.route('admin.student.late-entries', $student->id).'" class="text-blue-600 hover:text-blue-900">View Late Entries</a>
                     </td>
                 </tr>

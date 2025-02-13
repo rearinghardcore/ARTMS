@@ -44,12 +44,6 @@ class LateEntryController extends Controller
         $lateEntry->status = 'Approved';
         $lateEntry->save();
 
-        // Set notification for the user
-        $user = $lateEntry->user;
-        $user->notification = 'Your late slip request has been approved.';
-        $user->notification_timestamp = Carbon::now();
-        $user->save();
-
         return redirect()->route('late-slip-requests')->with('status', 'Late slip request approved successfully!');
     }
 
@@ -82,5 +76,15 @@ class LateEntryController extends Controller
     {
         $lateEntry = LateEntry::findOrFail($id);
         return view('late_entry_valid', compact('lateEntry'));
+    }
+
+    public function QRSelection()
+    {
+        $lateEntries = LateEntry::where('user_id', Auth::id())
+        ->where('isApproved', 1)
+        ->orderBy('date', 'desc')
+        ->orderBy('time', 'desc')
+        ->get();
+        return view('GenerateQR', compact('lateEntries'));
     }
 }

@@ -7,15 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white light:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 light:text-gray-100">
+            <div class="form-container">
+                <div class="form-content">
                     <form action="{{ route('late-entry.store') }}" method="POST">
                         @csrf
-                        <div class="mt-4">
-                            <label for="reason" class="block text-sm font-medium text-gray-700 light:text-black-300">Reason for being late</label>
-                            <textarea id="reason" name="reason" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 light:bg-gray-700 light:border-gray-600 light:text-gray-300"></textarea>
+                        <div class="form-group">
+                            <label for="reason" class="form-label">Reason for being late</label>
+                            <textarea id="reason" name="reason" rows="4" class="form-input"></textarea>
                         </div>
-                        <button type="submit" class="mt-4 px-4 py-2 bg-blue-800 text-black font-semibold rounded-lg shadow-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                        <button type="submit" class="submit-btn">
                             Generate Slip
                         </button>
                     </form>
@@ -23,4 +23,93 @@
             </div>
         </div>
     </div>
+
+    <style>
+        /* Main Container */
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        .form-content {
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-top: 1.5rem;
+        }
+
+        /* Form Label */
+        .form-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Textarea */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background-color: #f9fafb;
+            color: #333;
+            resize: vertical;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #1d4ed8;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .submit-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1rem;
+            }
+
+            .submit-btn {
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
 </x-app-layout>

@@ -10,6 +10,7 @@ class LateEntry extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'user_id',
         'student_id',
         'date',
