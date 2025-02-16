@@ -47,7 +47,7 @@
             <div class="container-fluid bg-white light:bg-gray-800 shadow-sm sm:rounded-lg mt-6">
                 <div class="p-6 text-gray-900 light:text-gray-100">
                     <h3 class="text-lg font-semibold mb-4">Late Entries</h3>
-                    <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden;">
+                    <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow-x: auto;">
                         <thead style="background-color: #2b6cb0; color: white; text-align: left; font-weight: bold; text-transform: uppercase;">
                             <tr>
                                 <th style="padding: 12px 16px; border-bottom: 2px solid #ddd;">Student ID</th>

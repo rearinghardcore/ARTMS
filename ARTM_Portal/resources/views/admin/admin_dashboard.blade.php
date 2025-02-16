@@ -7,10 +7,10 @@
     
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white white:bg-gray-800 overflow-x:scroll shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 white:text-gray-100">
                     <h3 class="text-lg font-semibold mb-4">Students</h3>
-                    <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden;">
+                    <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow-x: scroll;">
                         <thead style="background-color: #2b6cb0; color: white; text-align: left; font-weight: bold; text-transform: uppercase;">
                             <tr>
                                 <th style="padding: 12px 16px; border-bottom: 2px solid #ddd;">Student ID</th>

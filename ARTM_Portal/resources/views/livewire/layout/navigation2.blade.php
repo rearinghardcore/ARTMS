@@ -114,7 +114,7 @@ new class extends Component
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden overflow-x:scroll">
         @if (Auth::user() && in_array(Auth::user()->usertype, ['admin', 'superadmin']))
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
