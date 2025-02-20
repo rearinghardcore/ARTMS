@@ -25,6 +25,7 @@ Composer (for PHP dependencies)
 MySQL (or any other supported database, but MySQL is assumed in this guide)
 Node.js & NPM (for compiling frontend assets)
 Laravel Installer (optional)
+XAMPP
 
 Step 1: Clone the Repository
 Clone your Laravel project repository to your local machine.
@@ -32,11 +33,8 @@ Clone your Laravel project repository to your local machine.
 git clone https://your-repository-url.git
 cd your-laravel-project
 
-
 Step 2: Install PHP Dependencies
 Run Composer to install the required PHP dependencies.
-
-
 
 composer install
 This command will install all the required PHP packages specified in the composer.json file.
@@ -61,6 +59,8 @@ php artisan key:generate
 This command generates a new key and updates your .env file.
 
 Step 5: Set Up the Database
+Make sure that you have XAMPP installed in your local system. Ensure that the Apache, MySQL and Filezilla modules are running. Configure the Apache's PHP.ini in XAMPP by pressing the config button under the Actions column. Find the ;extension=gd and remove the semi colon in that specific line to run the QR code library embedded in the ARTMS system.
+
 Database Migration
 Run the database migrations to create the necessary tables in your database.
 
