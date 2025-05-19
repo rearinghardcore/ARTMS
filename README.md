@@ -1,5 +1,8 @@
 # Artemis Portal: An Automated Real-Time Tardiness Monitoring System
 
+## Video Demonstration:
+[![Demo](https://img.youtube.com/vi/BSdXMSdVrZc/0.jpg)](https://youtu.be/BSdXMSdVrZc)
+
 This research study, entitled **"Artemis Portal: An Automated Real-Time Tardiness Monitoring System Using Laravel Framework for Streamlined Attendance,"** is a mandatory component for Grade 12 students under Electronic Information, Communication, and Technology (EICT) in the Science, Technology, Engineering, and Mathematics (STEM) track. It is part of their research course: **RESE: Inquiries, Investigation, and Immersion**.
 
 This study focuses on solving the recurring problem of tardiness monitoring at **Colegio San Agustin - Bacolod**. Through quantitative analysis, the researchers aim to develop a web application that can efficiently handle tardiness records and manage late slip requests via an administrative dashboard.
